@@ -35,8 +35,8 @@ class Handler(FileSystemEventHandler):
 
         elif event.event_type == 'modified':
             # Event is modified, you can process it now
-            print("File changed - Running hello.py")
-            subprocess.run(["python", "hello.py"])
+            print("File changed - Running file_operations.py")
+            subprocess.run(["python", "file_operations.py"])
 
 
 if __name__ == "__main__":
