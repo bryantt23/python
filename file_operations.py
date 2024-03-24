@@ -4,20 +4,15 @@ from pathlib import Path
 
 
 def read_file(file_path):
-    # with open(file_path, "r") as file:
-    #     content = file.read()
-    # return content
-
-    file = open(file_path, "r")
-    content = file.read()
-    file.close()
-
+    with open(file_path, "r") as f:
+        content = f.read()
     return content
 
 
 def write_to_file(file_path, content):
     # Implement writing to a file (appending)
-    pass
+    with open(file_path, "a") as f:
+        f.write(content)
 
 
 def list_directory_contents(dir_path):
@@ -47,11 +42,13 @@ def run_tests():
     assert read_file(
         "test_dir/test_file.txt") == "Hello, World!", "Should read file contents."
 
-    # # Test writing to a file
-    # write_to_file("test_dir/test_file.txt", "\nGoodbye, World!")
-    # with open("test_dir/test_file.txt", "r") as f:
-    #     content = f.read()
-    # assert "Goodbye, World!" in content, "Should append content to the file."
+    # Test writing to a file
+    write_to_file("test_dir/test_file.txt", "\nGoodbye, World!")
+    with open("test_dir/test_file.txt", "r") as f:
+        content = f.read()
+    print('content')
+    print(content)
+    assert "Goodbye, World!" in content, "Should append content to the file."
 
     # # Test listing directory contents
     # contents = list_directory_contents("test_dir")
