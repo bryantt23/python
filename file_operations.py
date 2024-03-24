@@ -17,13 +17,19 @@ def write_to_file(file_path, content):
 
 def list_directory_contents(dir_path):
     # Implement listing directory contents
-    content=os.listdir(dir_path)
+    content = os.listdir(dir_path)
     return content
 
 
 def walk_directory(dir_path):
-    # Implement walking a directory tree
-    pass
+    w = os.walk(dir_path)
+    res = set()
+    for (dirpath, dirnames, filenames) in w:
+        res.add(dirpath)
+        for f in filenames:
+            full_path = os.path.join(dirpath, f)
+            res.add(full_path)
+    return res
 
 
 def check_file_exists(file_path):
@@ -55,12 +61,18 @@ def run_tests():
     contents = list_directory_contents("test_dir")
     assert "sub_dir" in contents and "test_file.txt" in contents, "Should list all directory contents."
 
-    # # Test walking a directory
-    # expected_paths = {"test_dir", "test_dir/sub_dir",
-    #                   "test_dir/test_file.txt", "test_dir/sub_dir/test_file_2.txt"}
-    # assert set(walk_directory(
-    #     "test_dir")) == expected_paths, "Should list all files and directories in the tree."
+    # Test walking a directory
+    expected_paths = {
+        os.path.normpath("test_dir"),
+        os.path.normpath("test_dir/sub_dir"),
+        os.path.normpath("test_dir/test_file.txt"),
+        os.path.normpath("test_dir/sub_dir/test_file_2.txt")
+    }
+    assert set(walk_directory(
+        "test_dir")) == expected_paths, "Should list all files and directories in the tree."
 
+    print(walk_directory("test_dir"))
+    print("end")
     # # Test file existence
     # assert check_file_exists(
     #     "test_dir/test_file.txt") == True, "File should exist."
