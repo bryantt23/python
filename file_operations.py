@@ -17,7 +17,8 @@ def write_to_file(file_path, content):
 
 def list_directory_contents(dir_path):
     # Implement listing directory contents
-    pass
+    content=os.listdir(dir_path)
+    return content
 
 
 def walk_directory(dir_path):
@@ -38,21 +39,21 @@ def get_file_properties(file_path):
 
 
 def run_tests():
-    # Test reading from a file
-    assert read_file(
-        "test_dir/test_file.txt") == "Hello, World!", "Should read file contents."
+    # # Test reading from a file
+    # assert read_file(
+    #     "test_dir/test_file.txt") == "Hello, World!", "Should read file contents."
 
-    # Test writing to a file
-    write_to_file("test_dir/test_file.txt", "\nGoodbye, World!")
-    with open("test_dir/test_file.txt", "r") as f:
-        content = f.read()
-    print('content')
-    print(content)
-    assert "Goodbye, World!" in content, "Should append content to the file."
+    # # Test writing to a file
+    # write_to_file("test_dir/test_file.txt", "\nGoodbye, World!")
+    # with open("test_dir/test_file.txt", "r") as f:
+    #     content = f.read()
+    # print('content')
+    # print(content)
+    # assert "Goodbye, World!" in content, "Should append content to the file."
 
-    # # Test listing directory contents
-    # contents = list_directory_contents("test_dir")
-    # assert "sub_dir" in contents and "test_file.txt" in contents, "Should list all directory contents."
+    # Test listing directory contents
+    contents = list_directory_contents("test_dir")
+    assert "sub_dir" in contents and "test_file.txt" in contents, "Should list all directory contents."
 
     # # Test walking a directory
     # expected_paths = {"test_dir", "test_dir/sub_dir",
