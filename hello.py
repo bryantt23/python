@@ -1,33 +1,26 @@
 
 def hello_world():
-
-    # Your code here
-    pass
+    return "Hello, World!"
 
 
 def concatenate_strings(str1, str2):
-    # Your code here
-    pass
+    return str1+str2
 
 
 def add_integers(num1, num2):
-    # Your code here
-    pass
+    return num1+num2
 
 
 def multiply_integers(num1, num2):
-    # Your code here
-    pass
+    return num1*num2
 
 
 def create_list(element1, element2, element3):
-    # Your code here
-    pass
+    return [element1, element2, element3]
 
 
 def create_dictionary(key1, value1, key2, value2):
-    # Your code here
-    pass
+    return {key1: value1, key2: value2}
 
 
 # Tests
