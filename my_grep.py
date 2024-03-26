@@ -1,5 +1,5 @@
+import sys
 import os
-import re
 
 
 def mygrep(query, path):
@@ -37,7 +37,7 @@ def fake_test_mygrep():
         ("former", "./stories", []),
         ("exceedingly", "./stories/poe", []),
         ("casual approach often", "./stories",
-         [ os.path.normpath('stories\\a-dark-brown-dog.txt')+':1\tTheir casual approach often exasperated them exceedingly. They used to gain a ...']),
+         [os.path.normpath('stories\\a-dark-brown-dog.txt')+':1\tTheir casual approach often exasperated them exceedingly. They used to gain a ...']),
         ("very", "./stories", [
             os.path.normpath("./stories/poe/the-tell-tale-heart.txt") +
             ":1\tTrue! --nervous --very, very dreadfully nervous I had been and am; but why will you say that I am mad?...",
@@ -61,4 +61,15 @@ def fake_test_mygrep():
 # and ensure it returns the results in the expected format for comparison.
 
 
-fake_test_mygrep()
+# fake_test_mygrep()
+
+# This block allows the script to be called with arguments from the command line
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Usage: mygrep.py [query] [path]")
+    else:
+        query = sys.argv[1]
+        path = sys.argv[2]
+        results = mygrep(query, path)
+        for result in results:
+            print(result)
